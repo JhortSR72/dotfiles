@@ -1,0 +1,78 @@
+* {
+    font-family: JetBrainsMono Nerd Font;
+    font-size: 12px;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
+
+window#waybar {
+    background: rgba(0, 0, 0, 0.85);
+    color: #ffffff;
+    border-bottom: 1px solid #c2fe0c;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    padding: 0 12px;
+}
+
+#clock {
+    color: #c2fe0c;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+#cpu {
+    color: #01ffff;
+}
+
+#memory {
+    color: #01ffff;
+}
+
+#temperature {
+    color: #ff69b4;
+}
+
+#battery {
+    color: #c2fe0c;
+}
+
+#battery.charging {
+    color: #c2fe0c;
+}
+
+#battery.critical {
+    color: #ff0d1a;
+}
+
+#network {
+    color: #01ffff;
+}
+
+#pulseaudio {
+    color: #ffffff;
+}
+
+tooltip {
+    background: #000000;
+    border: 1px solid #c2fe0c;
+    color: #ffffff;
+}
+
+#custom-power {
+    color: #ff0000;
+    margin-left: 8px;
+    padding: 0 8px;
+    font-size: 14px;
+}
+
+#mpris {
+    color: #ffffff;
+    font-style: italic;
+    padding: 0 8px;
+    border-left: 2px solid #c2fe0c;
+}

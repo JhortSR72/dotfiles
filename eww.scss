@@ -1,0 +1,245 @@
+.weather-box {
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid #c2fe0c;
+    border-radius: 0px;
+    padding: 16px;
+    margin: 4px;
+}
+
+.weather-title {
+    color: #c2fe0c;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.weather-divider {
+    color: #c2fe0c;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 11px;
+}
+
+.weather-temp {
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.weather-cond {
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 14px;
+}
+
+.weather-hum {
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+}
+
+.weather-wind {
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+}
+
+.weather-footer {
+    color: #c2fe0c;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 11px;
+}
+
+.music-box {
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid #ff00aa;
+    padding: 16px;
+    margin: 4px;
+}
+
+.music-title {
+    color: #ff00aa;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.music-divider {
+    color: #ff00aa;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 11px;
+}
+
+.music-artist {
+    color: #ff00aa;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.music-song {
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    font-style: italic;
+}
+
+.music-progress {
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 11px;
+}
+
+.music-controls {
+    margin-top: 4px;
+}
+
+.music-btn {
+    color: #ff00aa;
+    font-size: 18px;
+    background: transparent;
+    border: none;
+    padding: 4px 12px;
+}
+
+.music-btn:hover {
+    color: #ffffff;
+}
+
+.music-open-btn {
+    color: #c2fe0c;
+    font-size: 14px;
+    background: transparent;
+    border: none;
+    padding: 2px 6px;
+}
+
+.music-open-btn:hover {
+    color: #ffffff;
+}
+
+.music-open-btn {
+    color: #c2fe0c;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    background: transparent;
+    border: 1px solid #c2fe0c;
+    padding: 4px 8px;
+    margin-top: 4px;
+}
+
+.music-open-btn:hover {
+    color: #000000;
+    background: #c2fe0c;
+}
+
+.notes-box {
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid #ff00aa;
+    padding: 16px;
+    margin: 4px;
+}
+
+.notes-title {
+    color: #ff00aa;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.notes-divider {
+    color: #ff00aa;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 11px;
+}
+
+.notes-item {
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+}
+
+.notes-item-done {
+    color: #c2fe0c;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+}
+
+.notes-footer {
+    color: #ff00aa;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.threat-box {
+    background: rgba(0, 0, 0, 0.75);
+    border: 1px solid #ff0000;
+    padding: 16px;
+    margin: 4px;
+}
+
+.threat-title {
+    color: #ff0000;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.threat-divider {
+    color: #ff0000;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 11px;
+}
+
+.threat-level {
+    color: #c2fe0c;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.threat-status {
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    font-style: italic;
+}
+
+.net-box {
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid #01ffff;
+    padding: 16px;
+    margin: 4px;
+}
+
+.net-title {
+    color: #01ffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.net-divider {
+    color: #01ffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 11px;
+}
+
+.net-item {
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+}
+
+.net-status {
+    color: #c2fe0c;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    font-weight: bold;
+}

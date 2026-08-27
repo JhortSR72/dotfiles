@@ -1,0 +1,74 @@
+configuration {
+    font: "JetBrainsMono Nerd Font 12";
+    show-icons: true;
+    display-drun: "👾 r34dy_t0_h4ck? >_";
+    drun-display-format: "{name}";
+    placeholder: "type target...";
+}
+
+window {
+    width: 900px;
+    border: 1px;
+    border-color: #c2fe0c;
+    background-color: #0f0a14;
+    text-color: #ffffff;
+    location: center;
+    anchor: center;
+}
+
+inputbar {
+    padding: 12px 16px;
+    border: 0px 0px 1px 0px;
+    border-color: #e8a0bf;
+    text-color: #e8a0bf;
+    background-color: #0f0a14;
+}
+
+prompt {
+    text-color: #c2fe0c;
+    background-color: #0f0a14;
+}
+
+entry {
+    text-color: #ffffff;
+    background-color: #0f0a14;
+    placeholder: "type target...";
+    placeholder-color: #3a2a3a;
+}
+
+listview {
+    padding: 8px 16px;
+    lines: 8;
+    columns: 2;
+    background-color: #0f0a14;
+}
+
+element normal {
+    padding: 10px;
+    text-color: #9e8e9e;
+    background-color: #0f0a14;
+}
+
+element selected {
+    padding: 10px;
+    background-color: #1a0f1e;
+    text-color: #c2fe0c;
+    border: 0px 0px 0px 2px;
+    border-color: #e8a0bf;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+}
+
+element-icon {
+    background-color: transparent;
+    size: 24px;
+}
+
+scrollbar {
+    background-color: #0f0a14;
+    handle-color: #c2fe0c;
+    handle-width: 4px;
+}

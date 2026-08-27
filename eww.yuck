@@ -1,0 +1,190 @@
+(defwindow weather
+  :monitor 0
+  :geometry (geometry
+    :x "14px"
+    :y "500px"
+    :width "280px"
+    :height "260px"
+    :anchor "right top")
+  :stacking "bg"
+  :exclusive false
+  (box :class "weather-box"
+    :orientation "v"
+    :space-evenly false
+    :spacing 6
+    (label :class "weather-title" :text "⬡ WEATHER // SJO")
+    (label :class "weather-divider" :text "─────────────────────")
+    (label :class "weather-temp" :text {temp})
+    (label :class "weather-feels" :text {feels})
+    (label :class "weather-cond" :text {condition})
+    (label :class "weather-divider" :text "─────────────────────")
+    (label :class "weather-hum" :text {humidity})
+    (label :class "weather-wind" :text {wind})
+    (label :class "weather-vis" :text {visibility})
+    (label :class "weather-divider" :text "─────────────────────")
+    (label :class "weather-sunrise" :text {sunrise})
+    (label :class "weather-sunset" :text {sunset})
+    (label :class "weather-footer" :text "─────────────────────")))
+
+(defwindow nowplaying
+  :monitor 0
+  :geometry (geometry
+    :x "14px"
+    :y "885px"
+    :width "280px"
+    :height "250px"
+    :anchor "right top")
+  :stacking "bg"
+  :exclusive false
+  (box :class "music-box"
+    :orientation "v"
+    :space-evenly false
+    :spacing 6
+    (label :class "music-title" :text "⬡ NOW PLAYING")
+    (label :class "music-divider" :text "─────────────────────")
+    (label :class "music-artist" :text {artist})
+    (label :class "music-song" :text {song})
+    (label :class "music-divider" :text "─────────────────────")
+    (label :class "music-progress" :text {progress})
+    (label :class "music-divider" :text "─────────────────────")
+    (box :class "music-controls"
+      :orientation "h"
+      :space-evenly true
+      (button :class "music-btn"
+        :onclick "playerctl -p spotify previous"
+        "⏮")
+      (button :class "music-btn"
+        :onclick "playerctl -p spotify play-pause"
+        "⏯")
+      (button :class "music-btn"
+        :onclick "playerctl -p spotify next"
+        "⏭"))
+    (button :class "music-open-btn"
+      :onclick "flatpak run com.spotify.Client &"
+      "[ OPEN SPOTIFY ]")))
+
+(defpoll temp :interval "5m"
+  "curl -s 'api.openweathermap.org/data/2.5/weather?q=San+Jose,CR&appid=64dd1d37c05d5d831920371c806ed486&units=metric' | python3 -c \"import sys,json; d=json.load(sys.stdin); print(f'TEMP: {d[\\\"main\\\"][\\\"temp\\\"]:.1f}°C')\"")
+
+(defpoll feels :interval "5m"
+  "curl -s 'api.openweathermap.org/data/2.5/weather?q=San+Jose,CR&appid=64dd1d37c05d5d831920371c806ed486&units=metric' | python3 -c \"import sys,json; d=json.load(sys.stdin); print(f'FEELS: {d[\\\"main\\\"][\\\"feels_like\\\"]:.1f}°C')\"")
+
+(defpoll condition :interval "5m"
+  "curl -s 'api.openweathermap.org/data/2.5/weather?q=San+Jose,CR&appid=64dd1d37c05d5d831920371c806ed486&units=metric' | python3 -c \"import sys,json; d=json.load(sys.stdin); print(d['weather'][0]['description'].upper())\"")
+
+(defpoll humidity :interval "5m"
+  "curl -s 'api.openweathermap.org/data/2.5/weather?q=San+Jose,CR&appid=64dd1d37c05d5d831920371c806ed486&units=metric' | python3 -c \"import sys,json; d=json.load(sys.stdin); print(f'HUM: {d[\\\"main\\\"][\\\"humidity\\\"]}%')\"")
+
+(defpoll wind :interval "5m"
+  "curl -s 'api.openweathermap.org/data/2.5/weather?q=San+Jose,CR&appid=64dd1d37c05d5d831920371c806ed486&units=metric' | python3 -c \"import sys,json; d=json.load(sys.stdin); print(f'WIND: {d[\\\"wind\\\"][\\\"speed\\\"]:.1f} m/s')\"")
+
+(defpoll visibility :interval "5m"
+  "curl -s 'api.openweathermap.org/data/2.5/weather?q=San+Jose,CR&appid=64dd1d37c05d5d831920371c806ed486&units=metric' | python3 -c \"import sys,json; d=json.load(sys.stdin); print(f'VIS: {d[\\\"visibility\\\"]//1000} km')\"")
+
+(defpoll sunrise :interval "30m"
+  "curl -s 'api.openweathermap.org/data/2.5/weather?q=San+Jose,CR&appid=64dd1d37c05d5d831920371c806ed486&units=metric' | python3 -c \"import sys,json,datetime; d=json.load(sys.stdin); print(f'RISE: {datetime.datetime.fromtimestamp(d[\\\"sys\\\"][\\\"sunrise\\\"]).strftime(\\\"%H:%M\\\")}')\"")
+
+(defpoll sunset :interval "30m"
+  "curl -s 'api.openweathermap.org/data/2.5/weather?q=San+Jose,CR&appid=64dd1d37c05d5d831920371c806ed486&units=metric' | python3 -c \"import sys,json,datetime; d=json.load(sys.stdin); print(f'SET: {datetime.datetime.fromtimestamp(d[\\\"sys\\\"][\\\"sunset\\\"]).strftime(\\\"%H:%M\\\")}')\"")
+
+(defpoll artist :interval "2s"
+  "playerctl -p spotify metadata artist 2>/dev/null || echo 'No music'")
+
+(defpoll song :interval "2s"
+  "playerctl -p spotify metadata xesam:title 2>/dev/null || echo 'Not playing'")
+
+(defpoll progress :interval "1s"
+  "STATUS=$(playerctl -p spotify status 2>/dev/null); if [ \"$STATUS\" = 'Playing' ]; then echo '▶ ░░░░░░░░░░'; else echo '⏸ ──────────'; fi")
+
+(defwindow notes
+  :monitor 0
+  :geometry (geometry
+    :x "14px"
+    :y "200px"
+    :width "280px"
+    :height "280px"
+    :anchor "left top")
+  :stacking "bg"
+  :exclusive false
+  (box :class "notes-box"
+    :orientation "v"
+    :space-evenly false
+    :spacing 6
+    (label :class "notes-title" :text "⬡ NOTES // TODOS")
+    (label :class "notes-divider" :text "─────────────────────")
+    (label :class "notes-item" :text "[ ] Take wireless course")
+    (label :class "notes-item" :text "[ ] Practice aircrack-ng")
+    (label :class "notes-item" :text "[ ] TryHackMe rooms")
+    (label :class "notes-item" :text "[ ] eJPT certification")
+    (label :class "notes-item" :text "[ ] HackTheBox")
+    (label :class "notes-divider" :text "─────────────────────")
+    (label :class "notes-item-done" :text "[✓] Install Kali Linux")
+    (label :class "notes-item-done" :text "[✓] Rice the desktop")
+    (label :class "notes-item-done" :text "[✓] Buy X1 Carbon")
+    (label :class "notes-divider" :text "─────────────────────")
+    (label :class "notes-footer" :text "[ STAY VIGILANT ]")))
+
+(defwindow threat
+  :monitor 0
+  :geometry (geometry
+    :x "40%"
+    :y "85%"
+    :width "320px"
+    :height "120px"
+    :anchor "center")
+  :stacking "bg"
+  :exclusive false
+  (box :class "threat-box"
+    :orientation "v"
+    :space-evenly false
+    :spacing 6
+    (label :class "threat-title" :text "⬡ THREAT ASSESSMENT")
+    (label :class "threat-divider" :text "─────────────────────────")
+    (label :class "threat-level" :text {threat})
+    (label :class "threat-status" :text {status})))
+
+(defpoll threat :interval "30s"
+  "/tmp/threat.sh")
+
+(defpoll status :interval "30s"
+  "/tmp/status.sh")
+
+(defwindow netmonitor
+  :monitor 0
+  :geometry (geometry
+    :x "40px"
+    :y "200px"
+    :width "280px"
+    :height "220px"
+    :anchor "left top")
+  :stacking "bg"
+  :exclusive false
+  (box :class "net-box"
+    :orientation "v"
+    :space-evenly false
+    :spacing 6
+    (label :class "net-title" :text "⬡ NETWORK MONITOR")
+    (label :class "net-divider" :text "─────────────────────")
+    (label :class "net-item" :text {localip})
+    (label :class "net-item" :text {connections})
+    (label :class "net-item" :text {pingval})
+    (label :class "net-divider" :text "─────────────────────")
+    (label :class "net-item" :text {upload})
+    (label :class "net-item" :text {download})
+    (label :class "net-divider" :text "─────────────────────")
+    (label :class "net-status" :text "STATUS: CONNECTED")))
+
+(defpoll localip :interval "30s"
+  "echo \"IP: $(/tmp/localip.sh)\"")
+
+(defpoll connections :interval "5s"
+  "echo \"CONN: $(/tmp/netconn.sh) active\"")
+
+(defpoll pingval :interval "10s"
+  "/tmp/ping.sh")
+
+(defpoll upload :interval "2s"
+  "cat /proc/net/dev | grep wlan0 | awk '{print \"UP: \" $10/1024 \" KB/s\"}'")
+
+(defpoll download :interval "2s"
+  "cat /proc/net/dev | grep wlan0 | awk '{print \"DOWN: \" $2/1024 \" KB/s\"}'")
