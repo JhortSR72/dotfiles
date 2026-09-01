@@ -188,3 +188,107 @@
 
 (defpoll download :interval "2s"
   "cat /proc/net/dev | grep wlan0 | awk '{print \"DOWN: \" $2/1024 \" KB/s\"}'")
+
+(defwindow launcher
+  :monitor 0
+  :geometry (geometry
+    :x "0px"
+    :y "0px"
+    :width "140px"
+    :height "100%"
+    :anchor "left center")
+  :stacking "bg"
+  :exclusive false
+  (box :class "launcher-box"
+    :orientation "v"
+    :space-evenly false
+    :spacing 0
+    :valign "center"
+    (label :class "launcher-title" :text "[ 4R53N4L ]")
+    (label :class "launcher-divider" :text "------------")
+    (button :class "launcher-item"
+      :onclick "brave-browser &"
+      "BRAVE")
+    (label :class "launcher-divider" :text "------------")
+    (button :class "launcher-item"
+      :onclick "kitty &"
+      "KITTY")
+    (label :class "launcher-divider" :text "------------")
+    (button :class "launcher-item"
+      :onclick "/usr/local/bin/discord-clean"
+      "DISCORD")
+    (label :class "launcher-divider" :text "------------")
+    (button :class "launcher-item"
+      :onclick "claude-desktop &"
+      "CLAUDE")
+    (label :class "launcher-divider" :text "------------")
+    (button :class "launcher-item"
+      :onclick "wireshark &"
+      "WIRESHARK")
+    (label :class "launcher-divider" :text "------------")
+    (button :class "launcher-item"
+      :onclick "systemsettings &"
+      "SETTINGS")
+    (label :class "launcher-divider" :text "------------")
+    (button :class "launcher-item"
+      :onclick "flatpak run com.spotify.Client &"
+      "SPOTIFY")
+    (label :class "launcher-divider" :text "------------")
+    (button :class "launcher-item"
+      :onclick "fern-wifi-cracker &"
+      "FERN")
+    (label :class "launcher-divider" :text "------------")
+    (button :class "launcher-item"
+      :onclick "kitty -e searchsploit &"
+      "EXPLOITDB")
+    (label :class "launcher-divider" :text "------------")
+    (button :class "launcher-item"
+      :onclick "variety &"
+      "VARIETY")
+    (label :class "launcher-divider" :text "------------")
+    (button :class "launcher-item"
+      :onclick "dolphin &"
+      "FILES")
+    (label :class "launcher-divider" :text "------------")
+    (button :class "launcher-item"
+      :onclick "zsh -i -c 'loadout' &"
+      "LOADOUT")))
+
+(defpoll vpnstatus :interval "5s"
+  "if pgrep openvpn > /dev/null; then echo 'CONNECTED'; else echo 'OFFLINE'; fi")
+
+(defpoll vpnip :interval "5s"
+  "if pgrep openvpn > /dev/null; then echo \"IP: $(curl -s --max-time 5 icanhazip.com 2>/dev/null || echo 'TUNNEL ACTIVE')\"; else echo 'IP: HIDDEN'; fi")
+
+(defpoll vpnserver :interval "30s"
+  "if pgrep openvpn > /dev/null; then echo 'SERVER: US-FREE-111'; else echo 'SERVER: NONE'; fi")
+
+(defpoll vpnuptime :interval "5s"
+  "if pgrep openvpn > /dev/null; then echo \"UPTIME: $(ps -o etime= -p $(pgrep openvpn) | tr -d ' ')\"; else echo 'UPTIME: N/A'; fi")
+
+(defwindow vpn
+  :monitor 0
+  :geometry (geometry
+    :x "14px"
+    :x "0px"
+    :y "0px"
+    :width "700px"
+    :height "55px"
+    :anchor "center top")
+  :stacking "bg"
+  :exclusive false
+  (box :class "vpn-box"
+    :orientation "h"
+    :space-evenly true
+    :spacing 12
+    (label :class "vpn-title" :text "⬡ VPN")
+    (label :class "vpn-status" :text {vpnstatus})
+    (label :class "vpn-ip" :text {vpnip})
+    (label :class "vpn-server" :text {vpnserver})
+    (label :class "vpn-uptime" :text {vpnuptime})
+    (button :class "vpn-btn-on"
+      :onclick "vpn-on &"
+      "[+ON+]")
+    (button :class "vpn-btn-off"
+      :onclick "vpn-off &"
+      "[-OFF-]")))

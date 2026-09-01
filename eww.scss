@@ -243,3 +243,107 @@
     font-size: 12px;
     font-weight: bold;
 }
+
+.launcher-box {
+    background: rgba(0, 0, 0, 0.15);
+    border-right: 1px solid #ff00aa;
+    padding: 24px 8px;
+}
+.launcher-item {
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 22px;
+    font-weight: bold;
+    background: transparent;
+    border: none;
+    padding: 16px 8px;
+    letter-spacing: 2px;
+}
+.launcher-item:hover {
+    color: #ff00aa;
+    font-size: 36px;
+}
+.launcher-divider {
+    color: #ff00aa;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 11px;
+    opacity: 0.4;
+}
+
+.launcher-title {
+    color: #ff00aa;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    padding: 8px 0px;
+}
+
+.vpn-box {
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid #c2fe0c;
+    padding: 16px;
+    margin: 4px;
+}
+.vpn-title {
+    color: #c2fe0c;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.vpn-divider {
+    color: #c2fe0c;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 11px;
+}
+.vpn-status {
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 18px;
+    font-weight: bold;
+}
+.vpn-ip {
+    color: #c2fe0c;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+}
+
+.vpn-controls {
+    margin-top: 4px;
+}
+.vpn-btn-on {
+    color: #c2fe0c;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    background: transparent;
+    border: 1px solid #c2fe0c;
+    padding: 2px 8px;
+}
+.vpn-btn-on:hover {
+    background: #c2fe0c;
+    color: #000000;
+}
+.vpn-btn-off {
+    color: #ff00aa;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    background: transparent;
+    border: 1px solid #ff00aa;
+    padding: 2px 8px;
+}
+.vpn-btn-off:hover {
+    background: #ff00aa;
+    color: #000000;
+}
+
+.vpn-server {
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+}
+.vpn-uptime {
+    color: #c2fe0c;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+}
