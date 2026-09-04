@@ -149,30 +149,7 @@
 (defpoll status :interval "30s"
   "/tmp/status.sh")
 
-(defwindow netmonitor
-  :monitor 0
-  :geometry (geometry
-    :x "40px"
-    :y "200px"
-    :width "280px"
-    :height "220px"
-    :anchor "left top")
-  :stacking "bg"
-  :exclusive false
-  (box :class "net-box"
-    :orientation "v"
-    :space-evenly false
-    :spacing 6
-    (label :class "net-title" :text "⬡ NETWORK MONITOR")
-    (label :class "net-divider" :text "─────────────────────")
-    (label :class "net-item" :text {localip})
-    (label :class "net-item" :text {connections})
-    (label :class "net-item" :text {pingval})
-    (label :class "net-divider" :text "─────────────────────")
-    (label :class "net-item" :text {upload})
-    (label :class "net-item" :text {download})
-    (label :class "net-divider" :text "─────────────────────")
-    (label :class "net-status" :text "STATUS: CONNECTED")))
+
 
 (defpoll localip :interval "30s"
   "echo \"IP: $(/tmp/localip.sh)\"")
@@ -227,7 +204,7 @@
       "WIRESHARK")
     (label :class "launcher-divider" :text "------------")
     (button :class "launcher-item"
-      :onclick "systemsettings &"
+      :onclick "blueman-manager &"
       "SETTINGS")
     (label :class "launcher-divider" :text "------------")
     (button :class "launcher-item"
@@ -252,7 +229,11 @@
     (label :class "launcher-divider" :text "------------")
     (button :class "launcher-item"
       :onclick "zsh -i -c 'loadout' &"
-      "LOADOUT")))
+      "LOADOUT")
+    (label :class "launcher-divider" :text "------------")
+    (button :class "launcher-item"
+      :onclick "code &"
+      "VSCODE")))
 
 (defpoll vpnstatus :interval "5s"
   "if pgrep openvpn > /dev/null; then echo 'CONNECTED'; else echo 'OFFLINE'; fi")
@@ -292,3 +273,83 @@
     (button :class "vpn-btn-off"
       :onclick "vpn-off &"
       "[-OFF-]")))
+
+
+
+(defpoll net_count :interval "60s"
+  "sudo /home/saint14/.local/bin/wifi-count.sh")
+
+(defpoll net_time :interval "1s"
+  "date '+%H:%M:%S'")
+
+(defpoll net_devices :interval "60s"
+  "sudo /home/saint14/.local/bin/wifi-devices.sh")
+
+(defpoll net_scroll :interval "0.2s"
+  "sudo /usr/local/bin/net-scroll.sh")
+
+(defwindow netmonitor
+  :monitor 0
+  :geometry (geometry
+    :x "0px"
+    :y "72px"
+    :width "900px"
+    :height "36px"
+    :anchor "center bottom")
+  :stacking "bg"
+  :exclusive false
+  (box :class "net-bar"
+    :orientation "h"
+    :space-evenly false
+    :spacing 0
+    (button :class "net-btn"
+      :onclick "kcmshell6 kcm_networkmanagement &"
+      "󰖩 WIFI")
+    (label :class "net-sep" :text " // ")
+    (label :class "net-title" :text "⬡ NET")
+    (label :class "net-sep" :text " // ")
+    (label :class "net-item" :text {"DEVICES: ${net_count}"})
+    (label :class "net-sep" :text " // ")
+    (label :class "net-item" :text {net_scroll})
+    (label :class "net-sep" :text " // ")
+    (label :class "net-scan" :text {"SCAN: ${net_time}"})
+    (label :class "net-sep" :text " // ")
+    (button :class "net-btn"
+      :onclick "blueman-manager &"
+      "󰂯 BT")))
+
+(defpoll sysbar_fw :interval "30s"
+  "sudo /usr/local/bin/ufw-status.sh")
+
+(defpoll sysbar_clip :interval "2s"
+  "/home/saint14/.local/bin/clipboard-status.sh")
+
+(defpoll sysbar_vol :interval "2s"
+  "/home/saint14/.local/bin/mute-status.sh")
+
+(defpoll sysbar_bt :interval "5s"
+  "/home/saint14/.local/bin/bt-device.sh")
+
+(defwindow sysbar
+  :monitor 0
+  :geometry (geometry
+    :x "0px"
+    :y "36px"
+    :width "900px"
+    :height "36px"
+    :anchor "center bottom")
+  :stacking "bg"
+  :exclusive false
+  (box :class "sys-bar"
+    :orientation "h"
+    :space-evenly false
+    :spacing 0
+    (label :class "sys-title" :text "⬡ SYS")
+    (label :class "sys-sep" :text " // ")
+    (label :class "sys-item" :text {sysbar_fw})
+    (label :class "sys-sep" :text " // ")
+    (button :class "sys-btn"
+      :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+      {sysbar_vol})
+    (label :class "sys-sep" :text " // ")
+    (label :class "sys-item" :text {"BT: ${sysbar_bt}"})))

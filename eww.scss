@@ -347,3 +347,90 @@
     font-family: "JetBrainsMono Nerd Font";
     font-size: 12px;
 }
+
+
+.net-bar {
+    background: rgba(0, 0, 0, 0.85);
+    border-top: 1px solid #ff00aa;
+    border-bottom: 1px solid #ff00aa;
+    padding: 0 16px;
+    min-height: 36px;
+}
+.net-title {
+    color: #ff00aa;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.net-sep {
+    color: #ff00aa;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+}
+.net-item {
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+}
+.net-scan {
+    color: #ff00aa;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.net-btn {
+    color: #ff00aa;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+    background: transparent;
+    border: 1px solid #ff00aa;
+    padding: 2px 8px;
+}
+.net-btn:hover {
+    background: #ff00aa;
+    color: #000000;
+}
+
+.sys-bar {
+    background: rgba(0, 0, 0, 0.85);
+    border-top: 1px solid #c2fe0c;
+    border-bottom: 1px solid #c2fe0c;
+    padding: 0 16px;
+    min-height: 36px;
+}
+.sys-title {
+    color: #c2fe0c;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+.sys-sep {
+    color: #c2fe0c;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+}
+.sys-item {
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+}
+.sys-btn {
+    color: #ffffff;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    font-weight: bold;
+    background: transparent;
+    border: none;
+    padding: 0 4px;
+}
+.sys-btn:hover {
+    color: #c2fe0c;
+}
