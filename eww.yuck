@@ -96,76 +96,6 @@
 (defpoll progress :interval "1s"
   "STATUS=$(playerctl -p spotify status 2>/dev/null); if [ \"$STATUS\" = 'Playing' ]; then echo '▶ ░░░░░░░░░░'; else echo '⏸ ──────────'; fi")
 
-(defwindow notes
-  :monitor 0
-  :geometry (geometry
-    :x "14px"
-    :y "200px"
-    :width "280px"
-    :height "280px"
-    :anchor "left top")
-  :stacking "bg"
-  :exclusive false
-  (box :class "notes-box"
-    :orientation "v"
-    :space-evenly false
-    :spacing 6
-    (label :class "notes-title" :text "⬡ NOTES // TODOS")
-    (label :class "notes-divider" :text "─────────────────────")
-    (label :class "notes-item" :text "[ ] Take wireless course")
-    (label :class "notes-item" :text "[ ] Practice aircrack-ng")
-    (label :class "notes-item" :text "[ ] TryHackMe rooms")
-    (label :class "notes-item" :text "[ ] eJPT certification")
-    (label :class "notes-item" :text "[ ] HackTheBox")
-    (label :class "notes-divider" :text "─────────────────────")
-    (label :class "notes-item-done" :text "[✓] Install Kali Linux")
-    (label :class "notes-item-done" :text "[✓] Rice the desktop")
-    (label :class "notes-item-done" :text "[✓] Buy X1 Carbon")
-    (label :class "notes-divider" :text "─────────────────────")
-    (label :class "notes-footer" :text "[ STAY VIGILANT ]")))
-
-(defwindow threat
-  :monitor 0
-  :geometry (geometry
-    :x "40%"
-    :y "85%"
-    :width "320px"
-    :height "120px"
-    :anchor "center")
-  :stacking "bg"
-  :exclusive false
-  (box :class "threat-box"
-    :orientation "v"
-    :space-evenly false
-    :spacing 6
-    (label :class "threat-title" :text "⬡ THREAT ASSESSMENT")
-    (label :class "threat-divider" :text "─────────────────────────")
-    (label :class "threat-level" :text {threat})
-    (label :class "threat-status" :text {status})))
-
-(defpoll threat :interval "30s"
-  "/tmp/threat.sh")
-
-(defpoll status :interval "30s"
-  "/tmp/status.sh")
-
-
-
-(defpoll localip :interval "30s"
-  "echo \"IP: $(/tmp/localip.sh)\"")
-
-(defpoll connections :interval "5s"
-  "echo \"CONN: $(/tmp/netconn.sh) active\"")
-
-(defpoll pingval :interval "10s"
-  "/tmp/ping.sh")
-
-(defpoll upload :interval "2s"
-  "cat /proc/net/dev | grep wlan0 | awk '{print \"UP: \" $10/1024 \" KB/s\"}'")
-
-(defpoll download :interval "2s"
-  "cat /proc/net/dev | grep wlan0 | awk '{print \"DOWN: \" $2/1024 \" KB/s\"}'")
-
 (defwindow launcher
   :monitor 0
   :geometry (geometry
@@ -204,7 +134,7 @@
       "WIRESHARK")
     (label :class "launcher-divider" :text "------------")
     (button :class "launcher-item"
-      :onclick "blueman-manager &"
+      :onclick "systemsettings &"
       "SETTINGS")
     (label :class "launcher-divider" :text "------------")
     (button :class "launcher-item"
@@ -318,6 +248,15 @@
       :onclick "blueman-manager &"
       "󰂯 BT")))
 
+(defpoll sysbar_conn :interval "5s"
+  "/home/saint14/.local/bin/active-conn.sh")
+
+(defpoll conn_scroll :interval "0.2s"
+  "/home/saint14/.local/bin/conn-scroll.sh")
+
+(defpoll sysbar_ssh :interval "30s"
+  "sudo /home/saint14/.local/bin/failed-ssh.sh")
+
 (defpoll sysbar_fw :interval "30s"
   "sudo /usr/local/bin/ufw-status.sh")
 
@@ -334,8 +273,8 @@
   :monitor 0
   :geometry (geometry
     :x "0px"
-    :y "36px"
-    :width "900px"
+    :y "108px"
+    :width "800px"
     :height "36px"
     :anchor "center bottom")
   :stacking "bg"
@@ -352,4 +291,10 @@
       :onclick "pactl set-sink-mute @DEFAULT_SINK@ toggle"
       {sysbar_vol})
     (label :class "sys-sep" :text " // ")
-    (label :class "sys-item" :text {"BT: ${sysbar_bt}"})))
+    (label :class "sys-item" :text {"BT: ${sysbar_bt}"})
+    (label :class "sys-sep" :text " // ")
+    (label :class "sys-item" :text {"CONN: ${sysbar_conn}"})
+    (label :class "sys-sep" :text " // ")
+    (label :class "sys-item" :text {conn_scroll})
+    (label :class "sys-sep" :text " // ")
+    (label :class "sys-item" :text {sysbar_ssh})))
